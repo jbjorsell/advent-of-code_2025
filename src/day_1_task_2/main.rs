@@ -21,8 +21,8 @@ fn main() -> eyre::Result<()> {
     let mut num_zeroes_passed = 0;
     for line in &lines {
         let prev_val = curr_val;
-        let direction = &line[0..1];
-        let value = line[1..].parse::<i32>()?;
+        let (direction, value) = line.split_at(1);
+        let value = value.parse::<i32>()?;
 
         let full_laps = value / 100;
         num_zeroes_passed += full_laps;
