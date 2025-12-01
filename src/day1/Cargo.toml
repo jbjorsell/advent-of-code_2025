@@ -1,10 +1,10 @@
 [package]
-name = "day_1_task_1"
+name = "day1"
 edition.workspace = true
 version.workspace = true
 
 [[bin]]
-name = "day_1_task_1"
+name = "day1"
 path = "main.rs"
 
 [dependencies]

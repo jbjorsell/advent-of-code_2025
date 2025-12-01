@@ -2,6 +2,8 @@ use color_eyre::eyre;
 use std::io::Write;
 use tracing::debug;
 
+mod dial;
+
 fn main() -> eyre::Result<()> {
     tracing_subscriber::fmt::init();
 
@@ -17,23 +19,26 @@ fn main() -> eyre::Result<()> {
     let debug_path = std::path::Path::new(manifest_dir).join("debug_output.txt");
     let mut debug_file = std::fs::File::create(debug_path)?;
 
-    let mut curr_val = 50;
-    let mut num_zeroes_encountered = 0;
+    let mut dial = dial::Dial::new();
+
+    let mut num_zeroes = 0;
+    let mut num_zeroes_passed = 0;
     for line in &lines {
-        let direction = &line[0..1];
-        let value = line[1..].parse::<i32>()?;
-        match direction {
-            "L" => curr_val -= value,
-            "R" => curr_val += value,
-            _ => panic!("Unknown direction: {}", direction),
+        let prev_val = dial.get_value();
+        let turn_result = dial.turn(line.parse()?);
+
+        if turn_result.final_value == 0 {
+            num_zeroes += 1;
         }
-        curr_val %= 100;
-        writeln!(debug_file, "{} -> {}", line, curr_val)?;
-        if curr_val == 0 {
-            num_zeroes_encountered += 1;
-        }
+        num_zeroes_passed += turn_result.zeroes_passed;
+
+        writeln!(
+            debug_file,
+            "{} -> {} ({}), num_zeroes_passed: {}",
+            prev_val, turn_result.final_value, line, num_zeroes_passed
+        )?;
     }
 
-    println!("Final value: {num_zeroes_encountered}");
+    println!("Passed zero {num_zeroes_passed} times and entered zero {num_zeroes} times.");
     Ok(())
 }

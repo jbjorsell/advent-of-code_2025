@@ -66,16 +66,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "day_1_task_1"
-version = "0.1.0"
-dependencies = [
- "color-eyre",
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "day_1_task_2"
+name = "day1"
 version = "0.1.0"
 dependencies = [
  "color-eyre",
