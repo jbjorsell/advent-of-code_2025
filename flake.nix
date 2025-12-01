@@ -41,6 +41,9 @@
               # Rust
               rustToolchain
 
+              # just
+              just
+
             ];
             # LD_LIBRARY_PATH = lib.makeLibraryPath [ pkgs.stdenv.cc.cc.lib ];
             # UV_PYTHON = "${pkgs.python314}/bin/python3";
