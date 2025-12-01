@@ -9,3 +9,4 @@ version = "0.1.0"
 [workspace.dependencies]
 tracing = { version = "0.1.43" }
 tracing-subscriber = { version = "0.3.22" }
+color-eyre = { version = "0.6.5" }
