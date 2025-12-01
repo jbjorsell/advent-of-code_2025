@@ -5,7 +5,7 @@ use tracing::debug;
 fn main() -> eyre::Result<()> {
     tracing_subscriber::fmt::init();
 
-    let input = read_input()?;
+    let input = std::fs::read_to_string("inputs/day1_input.txt")?;
     let lines: Vec<&str> = input.lines().collect();
     debug!(
         "Input has {} lines. First 5 lines: {:?}",
@@ -36,10 +36,4 @@ fn main() -> eyre::Result<()> {
 
     println!("Final value: {num_zeroes_encountered}");
     Ok(())
-}
-
-fn read_input() -> Result<String, std::io::Error> {
-    let manifest_dir = env!("CARGO_MANIFEST_DIR");
-    let path = std::path::Path::new(manifest_dir).join("input.txt");
-    std::fs::read_to_string(path)
 }
