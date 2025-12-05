@@ -1,5 +1,5 @@
 [workspace]
-members = ["src/day1", "src/day2", "src/day3", "src/day4"]
+members = ["src/day1", "src/day2", "src/day3", "src/day4", "src/day5"]
 resolver = "2"
 
 [workspace.package]

@@ -1,0 +1,13 @@
+[package]
+name = "day5"
+edition.workspace = true
+version.workspace = true
+
+[[bin]]
+name = "day5"
+path = "main.rs"
+
+[dependencies]
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+color-eyre = { workspace = true }
